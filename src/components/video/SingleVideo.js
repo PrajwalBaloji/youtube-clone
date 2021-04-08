@@ -14,8 +14,8 @@ export default function SingleVideo({ details }) {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           ></iframe>
-          <h1>{details.title}</h1>
-          <h4> {details.description} </h4>
+          <h3>{details.title}</h3>
+          <p> {details.description} </p>
         </div>
       )}
     </div>

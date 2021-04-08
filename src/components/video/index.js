@@ -11,6 +11,7 @@ const Video = ({searchString})=>{
     
     const [videoList,setvideoList]=useState([])
     const [selectedVideo,setselectedVideo]=useState({})
+    const [error,seterror]=useState(false)
     
     useEffect(() => {
         callApi();
@@ -18,8 +19,12 @@ const Video = ({searchString})=>{
 
     const callApi = async () => {
         console.log(searchString);
-        const results = await youtube.searchVideos(searchString,5);
-        console.log(videoList);
+        const results = await youtube.searchVideos(searchString,10);
+        if(results.length===0){
+            seterror(true)
+        }else {
+            seterror(false)
+        }
         setselectedVideo(results[0]);
         setvideoList(results)
     } 
@@ -31,12 +36,15 @@ const Video = ({searchString})=>{
     return(
 
         <>
-        {searchString}
-           <Col xs={12} lg={8} style={{border:'2px solid red'}}><SingleVideo details={selectedVideo}/></Col>
-           <Col xs={12} lg={4} style={{border:'2px solid red'}}>
+        
+           <Col xs={12} lg={8} > {error ? <h1> No result found please try looking for something else </h1> : <SingleVideo details={selectedVideo}/>}</Col>
+           <Col xs={12} lg={4} >
+               { !error && 
                <ListGroup>
-               <Suggestion videoList={videoList} changeSelection={selectedVideoCallback}/>
+                   <p>Suggestions </p>
+               <Suggestion videoList={videoList} changeSelection={selectedVideoCallback} selectedVideoId={selectedVideo.id}/>
                </ListGroup>
+                     }
                </Col>
         </>
     )

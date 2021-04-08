@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import "./App.css";
+import Footer from "./video/Footer";
 import Video from "./video/index";
 
 function App() {
@@ -16,10 +17,13 @@ function App() {
   return (
     <Container>
       <Row>
-        <Col style={{ border: "2px solid red" }}>
+        <Col >
           <Form onSubmit={(e)=>onSubmit(e)}>
-            <Form.Row>
-              <Col>
+            <Form.Row className='search-box'>
+              <Col xs={12} md={2} style={{margin:'auto'}}>
+                <img src="logo.jpg" alt="Youtube logo " width='100px' style={{ margin :'auto '}}/>
+                </Col>
+                <Col md={7} xs={9}>
                 <Form.Control
                   size="lg"
                   type="text"
@@ -38,6 +42,9 @@ function App() {
       </Row>
       <Row>
         <Video searchString={passToChild}/>
+      </Row>
+      <Row>
+        <Footer/>
       </Row>
     </Container>
   );
