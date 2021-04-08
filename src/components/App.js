@@ -1,5 +1,6 @@
 import { Col, Container, Form, Row , Button } from 'react-bootstrap';
 import './App.css';
+import Video from './video/index';
 
 function App() {
   return (
@@ -19,8 +20,7 @@ function App() {
       </Col>
     </Row>
     <Row>
-      <Col xs={12} lg={8} style={{border:'2px solid red'}}>1 of 3</Col>
-      <Col xs={12} lg={4} style={{border:'2px solid red'}}>2 of 3</Col>
+      <Video/>
     </Row>
   </Container>
   );
